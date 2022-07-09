@@ -25,11 +25,11 @@ B 发生之前 A 发生的概率，也就是 $P(A) = \dfrac{P(A)}{P(S)}$，此�
 
 ![图 5](images/week2-20220709110836.png)  
 
-B 发生之后 A 发生的概率，此时 sample space shrink down 到了 B，B 之外的已经没有意义不可能发生了。此时的 $P(A)$（严格来说是 $P(A|B)$）变成了 $\dfrac{P(A \bigcap B)}{P(B)}$。
+B 发生之后 A 发生的概率，此时 sample space shrink down 到了 B，B 之外的已经没有意义不可能发生了。此时的 $P(A)$（严格来说是 $P(A|B)$）变成了 $\dfrac{P(A \cap B)}{P(B)}$。
 
 此时条件概率的公式：
 
-$$ P(A|B) = \dfrac{P(A \bigcap B)}{P(B)} $$
+$$ P(A|B) = \dfrac{P(A \cap B)}{P(B)} $$
 
 也就水到渠成了。
 
@@ -59,15 +59,15 @@ A 的概率保持不变，不受 B' 的影响，所以此时 A 与 B' 是 indepe
 
 由上面可知：
 
-$$ P(A|B) = \dfrac{P(A \bigcap B)}{P(B)} $$
-$$ P(B|A) = \dfrac{P(A \bigcap B)}{P(A)} $$
+$$ P(A|B) = \dfrac{P(A \cap B)}{P(B)} $$
+$$ P(B|A) = \dfrac{P(A \cap B)}{P(A)} $$
 
 所以：
 
-$$ P(A \bigcap B) = P(A|B) \times P(B) $$
-$$ P(A \bigcap B) = P(B|A) \times P(A) $$
+$$ P(A \cap B) = P(A|B) \times P(B) $$
+$$ P(A \cap B) = P(B|A) \times P(A) $$
 
-这就是 multiplication rule 了，用于计算 A 和 B **同时**发生的概率。注意区别 $P(A \bigcap B)$ 和 $P(A|B)$，前者是同时发生，后者是 B 先发生。
+这就是 multiplication rule 了，用于计算 A 和 B **同时**发生的概率。注意区别 $P(A \cap B)$ 和 $P(A|B)$，前者是同时发生，后者是 B 先发生。
 
 举个例子，已知瑞士有 17.6% 的人居住在苏黎世，而苏黎世有 19.6% 的人是 0-19 岁。那么问：一个瑞士人居住在苏黎世且年龄是 0-19 岁的概率有多大？
 
@@ -77,7 +77,7 @@ $$ P(A \bigcap B) = P(B|A) \times P(A) $$
 
 对于独立事件，multiplication rule 变得更加简单：
 
-$$ P(A \bigcap B) = P(A|B) \times P(B) = P(A) \times P(B)$$
+$$ P(A \cap B) = P(A|B) \times P(B) = P(A) \times P(B)$$
 
 毕竟 A 发生的概率不受 B 影响。
 
@@ -91,7 +91,7 @@ $$ P(A \bigcap B) = P(A|B) \times P(B) = P(A) \times P(B)$$
 
 ![图 13](images/week2-20220709120140.png)  
 
-中间紫色表示的是联合概率 joint probability，也就是 $P(A \bigcap B)$，表格边缘的红色和蓝色表示的是边缘概率 marginal probability，即 $P(A)$ 等，右下角的绿色格子表示 sample space 的概率，一定为 1。上方的棕色和左侧的粉色表示事件，他们分别是 mutually exclusive 和 collectively exhaustive 的，也就是说他们分别互相独立且完整构成一个 sample space，独立性和完备性。
+中间紫色表示的是联合概率 joint probability，也就是 $P(A \cap B)$，表格边缘的红色和蓝色表示的是边缘概率 marginal probability，即 $P(A)$ 等，右下角的绿色格子表示 sample space 的概率，一定为 1。上方的棕色和左侧的粉色表示事件，他们分别是 mutually exclusive 和 collectively exhaustive 的，也就是说他们分别互相独立且完整构成一个 sample space，独立性和完备性。
 
 一旦我们有了这个表格，想要算什么条件概率都变得异常简单。比如 given 一个人是亚洲人，那么 TA 住酒店的概率有多高？0.064 / 0.071 = 90.14%，还是相当高的。
 
@@ -121,7 +121,14 @@ OK，现在我们有了这个，可以说是无敌了，想算什么都可以。
 
 我们来看下 $P(good|S)$ 的计算过程：
 
-$$ P(good|S) = \dfrac{0.54}{0.58} = \dfrac{0.6 \times 0.9}{0.6 \times 0.9 + 0.4 \times 0.1} = \dfrac{P(S|good) \times P(good)}{P(S|good) \times P(good) + P(S|bad) \times P(bad)} = \dfrac{P(S \bigcap good)}{P(S \bigcap good) + P(S \bigcap bad)} = \dfrac{P(S \bigcap good)}{P(S)}$$
+$$ \begin{align}
+P(good|S) &= \dfrac{0.54}{0.58} \\
+&= \dfrac{0.6 \times 0.9}{0.6 \times 0.9 + 0.4 \times 0.1} \\
+&= \dfrac{P(S|good) \times P(good)}{P(S|good) \times P(good) + P(S|bad) \times P(bad)} \\
+&= \dfrac{P(S \cap good)}{P(S \cap good) + P(S \cap bad)} \\
+&= \dfrac{P(S \cap good)}{P(S)}
+\end{align}
+$$
 
 我们无形中就得到了贝叶斯公式，找到了 $P(good|S)$ 和 $P(S|good)$ 之间的联系，已知三个概率来求另一个概率：
 
