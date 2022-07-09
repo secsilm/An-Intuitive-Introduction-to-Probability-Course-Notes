@@ -130,7 +130,7 @@ P(good|S) &= \dfrac{0.54}{0.58} \\
 \end{align}
 $$
 
-我们无形中就得到了贝叶斯公式，找到了 $P(good|S)$ 和 $P(S|good)$ 之间的联系，已知三个概率来求另一个概率：
+我们无形中就得到了贝叶斯公式，找到了 $P(good|S)$ 和 $P(S|good)$ 之间的联系，已知三个概率（multiplication rule）来求另一个概率：
 
 $$P(A|B) = \dfrac{P(B|A) \times P(A)}{P(B|A) \times P(A) + P(B|A^C) \times P(A^C)}$$
 
